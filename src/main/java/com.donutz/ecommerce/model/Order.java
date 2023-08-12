@@ -24,6 +24,16 @@ public class Order {
   @Transient
   public Double getTotalOrderPrice() {
     double sum = 0D;
+    List<OrderProduct> orderProducts = getOrderProducts();
+    for (OrderProduct op : orderProducts) {
+      sum += op.getTotalPrice();
+    }
+    return sum;
+  }
+
+  @Transient
+  public int getNumberOfProducts() {
+    return this.orderProducts.size();
   }
 }
 
